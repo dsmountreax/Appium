@@ -6,32 +6,31 @@ import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class AppiumBasics {
+public class AppiumBasics extends BaseTest{
     @Test
     public void WifiSettingName() throws MalformedURLException {
         //Android Driver or IOSDriver
         // Appium code --> Appium Server --> Mobile
-
         // starter appium server
-        AppiumDriverLocalService service=new AppiumServiceBuilder().withAppiumJS(new File("C:\\Users\\Enrique\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js"))
-                .withIPAddress("127.0.0.1").usingPort(4723).build();
-        service.start();
-        UiAutomator2Options options=new UiAutomator2Options();
-        options.setDeviceName("KikeEmulator");
-        options.setApp("D:\\Aprendizaje\\Appium\\Appium_Laboratorios\\Appium\\src\\test\\java\\resources\\ApiDemos-debug.apk");
-        AndroidDriver driver=new AndroidDriver(new URL("http://127.0.0.1:4723"),options);
         driver.findElement(AppiumBy.accessibilityId("Preference")).click();
-        // there are only 5 locators for android and there are Xpath, id, accesibilityId, classname, androidUIAutomator
+        driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc='3. Preference dependencies']")).click();
+        driver.findElement(AppiumBy.id("android:id/checkbox")).click();
+        driver.findElement(AppiumBy.xpath("(//android.widget.RelativeLayout)[2]")).click();
+        String alertTitle =driver.findElement(AppiumBy.id("android:id/alertTitle")).getText();
+        System.out.println(alertTitle);
+        Assert.assertEquals(alertTitle,"WiFi settings");
+        driver.findElement(AppiumBy.id("android:id/edit")).sendKeys("Rahul Wifi");
+        driver.findElements(AppiumBy.className("android.widget.Button")).get(1).click();
+
+        // there are only 5 locators for android and there are id, accesibilityId, classname, androidUIAutomator, Xpath,
         //Actual Automation start
         //Set Wifi Name
-        driver.quit();
-        service.stop();
-
     }
 }

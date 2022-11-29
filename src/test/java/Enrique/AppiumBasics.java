@@ -28,9 +28,9 @@ public class AppiumBasics extends BaseTest{
         Assert.assertEquals(alertTitle,"WiFi settings");
         driver.findElement(AppiumBy.id("android:id/edit")).sendKeys("Rahul Wifi");
         driver.findElements(AppiumBy.className("android.widget.Button")).get(1).click();
-
         // there are only 5 locators for android and there are id, accesibilityId, classname, androidUIAutomator, Xpath,
         //Actual Automation start
         //Set Wifi Name
+
     }
 }

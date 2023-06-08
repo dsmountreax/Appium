@@ -68,6 +68,4 @@ public class BaseTest {
                 "elementId",webElement,//(RemoteWebElement)webElement.getId(),
                 "endX",830,"endY",730));
     }
-
-
 }

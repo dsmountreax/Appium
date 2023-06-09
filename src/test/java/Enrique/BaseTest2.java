@@ -31,6 +31,7 @@ public class BaseTest2 {
         service.start();
         UiAutomator2Options options=new UiAutomator2Options();
         options.setDeviceName("KikeEmulator");
+        options.setChromedriverExecutable("D:\\Aprendizaje\\Appium\\Appium_Laboratorios\\Appium\\src\\test\\java\\resources\\chromedriver.exe");
         options.setApp("D:\\Aprendizaje\\Appium\\Appium_Laboratorios\\Appium\\src\\test\\java\\resources\\General-Store.apk");
         driver=new AndroidDriver(new URL("http://127.0.0.1:4723"),options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));

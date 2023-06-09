@@ -35,8 +35,8 @@ public class eCommerce_tc_3 extends BaseTest2{
 
         driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/appbar_btn_cart")).click();
 
-        WebDriverWait wait= new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.invisibilityOf(driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/toolbar_title"))));
+        WebDriverWait wait= new WebDriverWait(driver, Duration.ofSeconds(8));
+        //wait.until(ExpectedConditions.invisibilityOf(driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/toolbar_title"))));
         wait.until(ExpectedConditions.attributeContains(driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/toolbar_title")),"text","Cart"));
 
         //Thread.sleep(6000);
@@ -52,7 +52,13 @@ public class eCommerce_tc_3 extends BaseTest2{
 
         String totalAmount=driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/totalAmountLbl")).getText();
         Double displayFormattedSum=GetFormattedAmount(totalAmount);
-
         Assert.assertEquals(sum,displayFormattedSum);
+        WebElement ele=driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/termsButton"));
+        longPressAction(ele);
+        driver.findElement(AppiumBy.id("android:id/button1")).click();
+        driver.findElement(AppiumBy.className("android.widget.CheckBox")).click();
+        driver.findElement(AppiumBy.id("com.androidsample.generalstore:id/btnProceed")).click();
+        Thread.sleep(5000);
+
     }
 }
